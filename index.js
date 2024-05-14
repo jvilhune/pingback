@@ -1,8 +1,15 @@
 const express = require('express')
 const app = express()
-
+require('dotenv').config()
 const cors = require('cors')
 app.use(cors());
+
+const envObject = {
+  port: process.env.PORT,
+  uri: process.env.URI
+}
+
+console.log('envObject', envObject)
 
 let notes = [
   {
@@ -21,13 +28,6 @@ let notes = [
     important: true
   }
 ]
-
-
-/*
-app.get('/', (req, res) => {
-  res.send('<h1>Hello World!</h1>')
-})
-*/
 
 app.get('/', (_req, res) => {
   res.send('<h1>Hello from the root application URL</h1>');
