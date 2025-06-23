@@ -42,6 +42,11 @@ app.get('/api/notes', (req, res) => {
   res.json(notes)
 })
 
+
+function runperiodFunction2(){
+  console.log("Period Function2 executed");
+}
+
 function runperiodFunction() {
   console.log("Period Function executed");
   setTimeout(runperiodFunction, 10000);
@@ -49,6 +54,9 @@ function runperiodFunction() {
 
 const PORT = 3001
 app.listen(PORT, () => {
-  runperiodFunction();
+  //runperiodFunction();
+
+  runperiodFunction2();
+  setInterval(runperiodFunction2,10000);
   console.log(`Server running on port ${PORT}`)
 })
