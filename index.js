@@ -42,7 +42,13 @@ app.get('/api/notes', (req, res) => {
   res.json(notes)
 })
 
+function runperiodFunction() {
+  console.log("Period Function executed");
+  setTimeout(runperiodFunction, 10000);
+}
+
 const PORT = 3001
 app.listen(PORT, () => {
+  runperiodFunction();
   console.log(`Server running on port ${PORT}`)
 })
