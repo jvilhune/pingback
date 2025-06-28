@@ -4,6 +4,20 @@ require('dotenv').config()
 const cors = require('cors')
 app.use(cors());
 
+var request = require('request');
+var url = 'https://www.google.com'
+// use a timeout value of 10 seconds
+var timeoutInMilliseconds = 10*1000
+var opts = {
+  url: url,
+  timeout: timeoutInMilliseconds
+}
+//npm install request
+
+//const axios = require('axios');
+//const { JSDOM } = require('jsdom');
+//npm install axios jsdom
+
 const envObject = {
   port: process.env.PORT,
   uri: process.env.URI
@@ -45,6 +59,20 @@ app.get('/api/notes', (req, res) => {
 
 function runperiodFunction2(){
   console.log("Period Function2 executed");
+
+  request(opts, function (err, res, body) {
+    if (err) {
+      console.dir(err)
+      return
+    }
+
+    var statusCode = res.statusCode
+    var statusMsg = res.statusMessage
+
+
+    console.log('status code: ' + statusCode)
+    console.log('status msg: ' + statusMsg)
+  })
 }
 
 function runperiodFunction() {

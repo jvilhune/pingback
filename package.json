@@ -11,9 +11,12 @@
   "author": "Jukka Vilhunen",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.10.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "jsdom": "^26.1.0",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
