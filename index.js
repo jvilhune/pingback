@@ -18,6 +18,11 @@ var opts = {
 //const { JSDOM } = require('jsdom');
 //npm install axios jsdom
 
+//How is an HTTP POST request made in node.js?
+//https://stackoverflow.com/questions/6158933/how-is-an-http-post-request-made-in-node-js
+//Node.js request web page
+//https://stackoverflow.com/questions/15838623/node-js-request-web-page
+
 const envObject = {
   port: process.env.PORT,
   uri: process.env.URI
