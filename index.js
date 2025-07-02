@@ -4,6 +4,13 @@ require('dotenv').config()
 const cors = require('cors')
 app.use(cors());
 
+const lib = require("./cron");
+var result = lib.add(4, 4);
+console.log(`The result is: ${result}`);
+result = lib.subtract(6, 4);
+console.log(`The result is: ${result}`);
+lib.job.start();
+
 var request = require('request');
 var url = 'https://www.google.com'
 // use a timeout value of 10 seconds
@@ -89,7 +96,7 @@ const PORT = 3001
 app.listen(PORT, () => {
   //runperiodFunction();
 
-  runperiodFunction2();
-  setInterval(runperiodFunction2,10000);
+  //runperiodFunction2();
+  //setInterval(runperiodFunction2,10000);
   console.log(`Server running on port ${PORT}`)
 })
