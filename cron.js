@@ -1,11 +1,14 @@
 const cron = require('cron');
 const https = require('https');
 
-const backendUrl = 'https://www.jvrecords.fi/recback/build/index.html';
+//const backendUrl = 'https://www.jvrecords.fi/recback/build/index.html#/readderamlist';
+const backendUrl = 'https://www.jvrecords.fi/recback/api/records';
 
 const job = new cron.CronJob('*/14 * * * *', function () {
-
   console.log('Restarting server');
+
+  var data = '';
+  var body = ''; 
 
   https
     .get(backendUrl, (res) => {
@@ -15,7 +18,17 @@ const job = new cron.CronJob('*/14 * * * *', function () {
       else {
         console.error('failed to restart server with status code: ${res.statusCode}');
       }
+      res.on('data', (chunk) => {
+        data = data + chunk.toString();
+      });
+
+      res.on('end', () => {
+        body = JSON.parse(data);
+        console.log(body);
+      });
     });
+    const dateData = `${new Date().toUTCString()} : Cron Job Runs on every 14 minutes`;
+    console.log(dateData);
 });
 
 const add = (x, y) => {
