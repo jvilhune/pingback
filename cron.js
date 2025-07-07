@@ -5,6 +5,7 @@ const https = require('https');
 const backendUrl = 'https://www.jvrecords.fi/recback/api/records';
 
 const job = new cron.CronJob('*/14 * * * *', function () {
+  /*
   console.log('Restarting server');
 
   var data = '';
@@ -29,6 +30,29 @@ const job = new cron.CronJob('*/14 * * * *', function () {
     });
     const dateData = `${new Date().toUTCString()} : Cron Job Runs on every 14 minutes`;
     console.log(dateData);
+  */
+
+  const request = https.request(backendUrl, (response) => {
+      let data = '';
+      response.on('data', (chunk) => {
+          data = data + chunk.toString();
+      });
+
+      response.on('end', () => {
+          const body = JSON.parse(data);
+          //console.log(body);
+      });
+  })
+
+  request.on('error', (error) => {
+      console.log('An error', error);
+  });
+
+  request.end() 
+
+  const dateData = `${new Date().toUTCString()} : Cron Job Runs on every 14 minutes`;
+  console.log(dateData);
+
 });
 
 const add = (x, y) => {
